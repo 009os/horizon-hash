@@ -1,3 +1,342 @@
+/* Medium Font Strategy Implementation */
+@import url('https://fonts.googleapis.com/css2?family=Charter:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kievit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noe+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marath+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fell:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sohne:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Circular:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Animations - Performance Optimized */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+/* Animation Classes - Performance Optimized */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Staggered Animation Delays - Optimized */
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animate-delay-700 {
+  animation-delay: 700ms;
+}
+
+/* Custom Scale Classes - Performance Optimized */
+.scale-102 {
+  transform: scale3d(1.02, 1.02, 1.02);
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Hover Effects - Performance Optimized */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.hover-lift:hover {
+  transform: translate3d(0, -8px, 0);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Enhanced Clickable Card Effects - Performance Optimized */
+.clickable-card {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.clickable-card:hover {
+  transform: translate3d(0, -8px, 0) scale3d(1.02, 1.02, 1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2), 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Pulse effect for extra clickability - Performance Optimized */
+.clickable-pulse {
+  animation: clickablePulse 2s infinite;
+  will-change: box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+@keyframes clickablePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+/* Smooth Transitions - Performance Optimized */
+.smooth-transition {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Performance Optimizations for Large Lists */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-pulse-slow,
+  .animate-float {
+    animation: none;
+    transition: none;
+  }
+  
+  .hover-lift:hover,
+  .clickable-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Optimize for devices with limited resources */
+@media (max-width: 768px) {
+  .animate-delay-500,
+  .animate-delay-700 {
+    animation-delay: 200ms;
+  }
+  
+  /* Mobile-specific optimizations */
+  .clickable-card:hover {
+    transform: translate3d(0, -4px, 0) scale3d(1.01, 1.01, 1.01);
+  }
+  
+  .hover-lift:hover {
+    transform: translate3d(0, -4px, 0);
+  }
+  
+  /* Reduce shadow intensity on mobile for better performance */
+  .clickable-card:hover {
+    box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.15), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hover-lift:hover {
+    box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.15), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 640px) {
+  /* Ensure text remains readable on small screens */
+  .clickable-card {
+    font-size: 14px;
+  }
+  
+  /* Optimize touch targets for mobile */
+  .clickable-card {
+    min-height: 44px;
+  }
+  
+  /* Reduce padding on very small screens */
+  .clickable-card {
+    padding: 12px;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .clickable-card {
+    padding: 16px;
+  }
+  
+  .clickable-card:hover {
+    transform: translate3d(0, -6px, 0) scale3d(1.015, 1.015, 1.015);
+  }
+}
+
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .clickable-card {
+    transform: translateZ(0);
+  }
+}
+
+/* Fallback fonts for better compatibility */
+@font-face {
+  font-family: 'Charter';
+  src: local('Charter'), local('Georgia'), serif;
+}
+
+@font-face {
+  font-family: 'Kievit';
+  src: local('Kievit'), local('Arial'), sans-serif;
+}
+
+@font-face {
+  font-family: 'Fell';
+  src: local('Fell'), local('Georgia'), serif;
+}
+
+@font-face {
+  font-family: 'Sohne';
+  src: local('Sohne'), local('Helvetica'), sans-serif;
+}
+
+@font-face {
+  font-family: 'Circular';
+  src: local('Circular'), local('Arial'), sans-serif;
+}
+
+/* Base font classes */
+.font-body {
+  font-family: 'Charter', 'Georgia', serif;
+}
+
+.font-body-sans {
+  font-family: 'Kievit', 'Arial', sans-serif;
+}
+
+.font-heading {
+  font-family: 'Fell', 'Georgia', serif;
+}
+
+.font-subheading {
+  font-family: 'Sohne', 'Helvetica', sans-serif;
+}
+
+.font-brand {
+  font-family: 'Circular', 'Arial', sans-serif;
+}
+
+/* Typography hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fell', 'Georgia', serif;
+  font-weight: 600;
+}
+
+.subheading {
+  font-family: 'Sohne', 'Helvetica', sans-serif;
+  font-weight: 500;
+}
+
+.body-text {
+  font-family: 'Charter', 'Georgia', serif;
+  line-height: 1.7;
+}
+
+.body-text-sans {
+  font-family: 'Kievit', 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+.brand-text {
+  font-family: 'Circular', 'Arial', sans-serif;
+  font-weight: 500;
+}
