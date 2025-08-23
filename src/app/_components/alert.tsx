@@ -16,7 +16,7 @@ const Alert = ({ preview }: Props) => {
     >
       <Container>
         <div className="py-2 text-center text-sm">
-          {preview ? (
+          {/* {preview ? (
             <>
               This page is a preview.{" "}
               <a
@@ -38,7 +38,7 @@ const Alert = ({ preview }: Props) => {
               </a>
               .
             </>
-          )}
+          )} */}
         </div>
       </Container>
     </div>

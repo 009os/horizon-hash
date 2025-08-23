@@ -3,6 +3,7 @@ import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import cn from "classnames";
 import { ThemeSwitcher } from "./_components/theme-switcher";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -53,11 +54,61 @@ export default function RootLayout({
         />
         <meta name="theme-color" content="#000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        
+        {/* MathJax for mathematical equations */}
+        <script
+          id="mathjax-config"
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.MathJax = {
+                tex: {
+                  inlineMath: [['$', '$']],
+                  displayMath: [['$$', '$$']],
+                  processEscapes: true
+                },
+                svg: {
+                  fontCache: 'global'
+                },
+                options: {
+                  skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                  ignoreHtmlClass: 'tex2jax_ignore'
+                },
+                startup: {
+                  pageReady: () => {
+                    return window.MathJax.startup.defaultPageReady().then(() => {
+                      console.log('MathJax is ready');
+                    });
+                  }
+                }
+              };
+            `
+          }}
+        />
+        <script
+          id="mathjax-script"
+          type="text/javascript"
+          async
+          src="https://polyfill.io/v3/polyfill.min.js?features=es6"
+        />
+        <script
+          id="mathjax-main"
+          type="text/javascript"
+          async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        />
+
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+        />
+
+        
+
       </head>
       <body className="font-body body-text">
         <ThemeSwitcher />
         <div className="min-h-screen">{children}</div>
-        <Footer />
       </body>
     </html>
   );

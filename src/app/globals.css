@@ -11,6 +11,96 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Crypto Theme Animations */
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating Shapes Animation */
+@keyframes float-shape-1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+@keyframes float-shape-2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-40px, -20px) rotate(-120deg); }
+  66% { transform: translate(20px, 40px) rotate(-240deg); }
+}
+
+@keyframes float-shape-3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(25px, 25px) rotate(90deg); }
+  66% { transform: translate(-25px, -25px) rotate(180deg); }
+}
+
+@keyframes float-shape-4 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-30px, 30px) rotate(-90deg); }
+  66% { transform: translate(30px, -30px) rotate(-180deg); }
+}
+
+@keyframes float-shape-5 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(20px, -40px) rotate(60deg); }
+  66% { transform: translate(-40px, 20px) rotate(120deg); }
+}
+
 /* Custom Animations - Performance Optimized */
 @keyframes fadeInUp {
   from {
@@ -120,6 +210,10 @@
   animation-delay: 700ms;
 }
 
+.animate-delay-900 {
+  animation-delay: 900ms;
+}
+
 /* Custom Scale Classes - Performance Optimized */
 .scale-102 {
   transform: scale3d(1.02, 1.02, 1.02);
@@ -188,13 +282,437 @@
   transform: translateZ(0);
 }
 
+/* Crypto Theme Specific Styles */
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+.animate-float-shape {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Floating Shapes */
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.shape-1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation: float-shape-1 20s ease-in-out infinite;
+}
+
+.shape-2 {
+  width: 120px;
+  height: 120px;
+  top: 60%;
+  right: 15%;
+  animation: float-shape-2 25s ease-in-out infinite;
+}
+
+.shape-3 {
+  width: 60px;
+  height: 60px;
+  top: 80%;
+  left: 20%;
+  animation: float-shape-3 18s ease-in-out infinite;
+}
+
+.shape-4 {
+  width: 100px;
+  height: 100px;
+  top: 30%;
+  right: 30%;
+  animation: float-shape-4 22s ease-in-out infinite;
+}
+
+.shape-5 {
+  width: 70px;
+  height: 70px;
+  top: 70%;
+  right: 60%;
+  animation: float-shape-5 24s ease-in-out infinite;
+}
+
+/* Market Animals */
+.market-animal {
+  @apply p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-center transition-all duration-300 hover:scale-105 hover:bg-white/20;
+}
+
+.bull-animal {
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+}
+
+.bear-animal {
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+}
+
+.whale-animal {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.market-animal:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+  @apply relative px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 overflow-hidden;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg hover:shadow-xl;
+}
+
+.btn-secondary {
+  @apply bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20;
+}
+
+.btn-content {
+  @apply relative z-10;
+}
+
+.btn-glow {
+  @apply absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 transition-opacity duration-300;
+}
+
+.btn-primary:hover .btn-glow,
+.btn-secondary:hover .btn-glow {
+  opacity: 0.3;
+}
+
+/* Stats Cards */
+.stat-card {
+  @apply p-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-center transition-all duration-300 hover:scale-105 hover:bg-white/20;
+}
+
+.stat-card-white {
+  @apply p-4 rounded-lg bg-gray-50 border border-gray-200 text-center transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-md;
+}
+
+.stat-number {
+  @apply block mb-2;
+}
+
+.stat-label {
+  @apply text-sm;
+}
+
+/* White Theme Market Animals */
+.market-animal-white {
+  @apply p-6 rounded-xl bg-gray-50 border border-gray-200 text-center transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-lg;
+}
+
+.bull-animal-white {
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+}
+
+.bull-animal-white:hover {
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.2);
+}
+
+.bear-animal-white {
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.1);
+}
+
+.bear-animal-white:hover {
+  box-shadow: 0 0 40px rgba(239, 68, 68, 0.2);
+}
+
+.whale-animal-white {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+.whale-animal-white:hover {
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+.market-animal-white:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* White Theme Buttons */
+.btn-primary-white {
+  @apply relative px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:scale-105;
+}
+
+.btn-secondary-white {
+  @apply relative px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 overflow-hidden bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200 hover:scale-105;
+}
+
+.btn-glow-white {
+  @apply absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 transition-opacity duration-300;
+}
+
+.btn-primary-white:hover .btn-glow-white,
+.btn-secondary-white:hover .btn-glow-white {
+  opacity: 0.3;
+}
+
+/* Black and White Theme Buttons */
+.btn-primary-bw {
+  @apply relative px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 overflow-hidden bg-white text-black border-2 border-black hover:bg-black hover:text-white hover:scale-105;
+}
+
+.btn-secondary-bw {
+  @apply relative px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 overflow-hidden bg-white text-black border-2 border-black hover:bg-black hover:text-white hover:scale-105;
+}
+
+/* Tree Structure Animation */
+.tree-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  min-height: 200px;
+}
+
+.tree-root {
+  position: relative;
+  z-index: 20;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tree-container:hover .tree-root {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.tree-branches {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 10;
+}
+
+.tree-container:hover .tree-branches {
+  opacity: 1;
+  pointer-events: all;
+  top: 100px;
+}
+
+.tree-branch {
+  @apply px-6 py-3 rounded-full font-medium text-sm transition-all duration-500 bg-white text-black border-2 border-black hover:bg-black hover:text-white hover:scale-110;
+  position: relative;
+  transform: translateY(40px) scale(0.6) rotate(-5deg);
+  opacity: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-container:hover .tree-branch {
+  transform: translateY(0) scale(1) rotate(0deg);
+  opacity: 1;
+}
+
+.branch-left {
+  transition-delay: 0.15s;
+  transform: translateY(40px) scale(0.6) rotate(-8deg);
+}
+
+.branch-right {
+  transition-delay: 0.3s;
+  transform: translateY(40px) scale(0.6) rotate(8deg);
+}
+
+.tree-container:hover .branch-left {
+  transform: translateY(0) scale(1) rotate(0deg);
+}
+
+.tree-container:hover .branch-right {
+  transform: translateY(0) scale(1) rotate(0deg);
+}
+
+/* Enhanced Tree Branch Lines */
+.tree-branch::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  width: 3px;
+  height: 25px;
+  background: linear-gradient(to bottom, black, transparent);
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.tree-container:hover .tree-branch::before {
+  opacity: 1;
+  height: 30px;
+}
+
+/* Branch-specific line animations */
+.branch-left::before {
+  transform: translateX(-50%) rotate(-15deg);
+}
+
+.branch-right::before {
+  transform: translateX(-50%) rotate(15deg);
+}
+
+.tree-container:hover .branch-left::before {
+  transform: translateX(-50%) rotate(-8deg);
+}
+
+.tree-container:hover .branch-right::before {
+  transform: translateX(-50%) rotate(8deg);
+}
+
+/* Enhanced hover effects for branches */
+.tree-branch:hover {
+  transform: translateY(-8px) scale(1.15) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border-width: 3px;
+}
+
+/* Pulse effect on root button */
+.tree-container:hover .tree-root::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: pulse-expand 0.8s ease-out;
+}
+
+@keyframes pulse-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Floating particles around branches */
+.tree-branch::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: black;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+  transition: all 0.5s ease;
+}
+
+.tree-container:hover .tree-branch::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  animation: float-particle 2s ease-in-out infinite;
+}
+
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-8px) scale(1.2);
+  }
+}
+
+/* Shine Effect for Black Text */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Floating Shapes - White Theme */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.05), rgba(147, 51, 234, 0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+/* Floating Shapes - Black and White Theme */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* Performance Optimizations for Large Lists */
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
   .animate-slide-in-left,
   .animate-slide-in-right,
   .animate-pulse-slow,
-  .animate-float {
+  .animate-float,
+  .animate-bounce-slow,
+  .animate-gradient-x {
     animation: none;
     transition: none;
   }
@@ -203,6 +721,10 @@
   .clickable-card:hover {
     transform: none;
     box-shadow: none;
+  }
+  
+  .floating-shapes {
+    display: none;
   }
 }
 
@@ -229,6 +751,12 @@
   
   .hover-lift:hover {
     box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.15), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Simplify floating shapes on mobile */
+  .shape {
+    width: 40px !important;
+    height: 40px !important;
   }
 }
 
@@ -266,6 +794,111 @@
   .clickable-card {
     transform: translateZ(0);
   }
+}
+
+/* Code Block Styling */
+pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+code {
+  background: #f1f3f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  color: #d73a49;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  border-radius: 0;
+}
+
+/* Mathematical Equation Styling - MathJax */
+.MathJax {
+  font-size: 1.1em;
+  margin: 1rem 0;
+}
+
+.MathJax_Display {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.MathJax_Display > .MathJax {
+  display: inline-block;
+  text-align: left;
+}
+
+/* Ensure equations don't overflow on mobile */
+.MathJax_Display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+/* Inline math styling - Keep inline with text */
+.MathJax:not(.MathJax_Display) {
+  margin: 0;
+  display: inline !important;
+  vertical-align: baseline;
+}
+
+/* Ensure inline math doesn't break text flow */
+p .MathJax:not(.MathJax_Display),
+li .MathJax:not(.MathJax_Display) {
+  display: inline !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Mathematical text styling */
+p strong, li strong {
+  font-family: 'Times New Roman', serif;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Subscript styling for mathematical notation */
+sub {
+  font-size: 0.75em;
+  vertical-align: sub;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Mathematical symbols styling */
+p strong sub, li strong sub {
+  font-size: 0.7em;
+  vertical-align: sub;
+  margin-left: 1px;
+}
+
+/* Code language labels */
+pre::before {
+  content: attr(data-language);
+  display: block;
+  background: #e9ecef;
+  color: #6c757d;
+  padding: 0.5rem 1rem;
+  margin: -1rem -1rem 1rem -1rem;
+  border-radius: 8px 8px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Fallback fonts for better compatibility */
