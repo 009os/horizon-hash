@@ -18,10 +18,31 @@ export default function Index() {
       <Container>
         {/* Hero Section */}
         <section className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center">
-          {/* Main Title */}
-          <div className="mb-8 animate-fade-in-up">
-            <h1 className="text-6xl sm:text-8xl lg:text-9xl font-bold text-black shine-effect">
-              HORIZON HASH
+          {/* Main Title with Split Animation */}
+          <div className="mb-8 relative">
+            {/* Particle Effects */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="particle particle-1"></div>
+              <div className="particle particle-2"></div>
+              <div className="particle particle-3"></div>
+              <div className="particle particle-4"></div>
+              <div className="particle particle-5"></div>
+            </div>
+            
+            <h1 className="text-6xl sm:text-8xl lg:text-9xl font-bold text-black relative z-10 flex items-center justify-center">
+              <span className="inline-block animate-slide-in-left-continuous">
+                HORIZON
+              </span>
+              <span className="inline-block mx-8 animate-bounce-between">
+                <img 
+                  src="/logo.webp" 
+                  alt="HORIZON HASH Logo" 
+                  className="w-16 h-16 object-contain rounded-full"
+                />
+              </span>
+              <span className="inline-block animate-slide-in-right-continuous">
+                HASH
+              </span>
             </h1>
           </div>
 

@@ -1,28 +1,90 @@
 import { Post } from "@/interfaces/post";
-import fs from "fs";
-import matter from "gray-matter";
-import { join } from "path";
+import { supabase } from "./supabase";
 
-const postsDirectory = join(process.cwd(), "_posts");
+export async function getPostSlugs(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('slug')
+    .eq('preview', false);
 
-export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+  if (error) {
+    console.error('Error fetching post slugs:', error);
+    throw new Error('Database connection failed');
+  }
+
+  return data?.map(post => post.slug) || [];
 }
 
-export function getPostBySlug(slug: string) {
-  const realSlug = slug.replace(/\.md$/, "");
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const { data, error } = await supabase
+    .from('posts')
+    .select(`
+      *,
+      author:author_id (
+        name,
+        picture
+      )
+    `)
+    .eq('slug', slug)
+    .single();
 
-  return { ...data, slug: realSlug, content } as Post;
+  if (error) {
+    console.error('Error fetching post:', error);
+    throw new Error('Database connection failed');
+  }
+
+  if (!data) return null;
+
+  return {
+    slug: data.slug,
+    title: data.title,
+    date: data.date,
+    coverImage: data.cover_image,
+    author: data.author ? {
+      name: data.author.name,
+      picture: data.author.picture
+    } : null,
+    excerpt: data.excerpt,
+    ogImage: {
+      url: data.og_image_url
+    },
+    content: data.content,
+    preview: data.preview
+  } as Post;
 }
 
-export function getAllPosts(): Post[] {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-  return posts;
+export async function getAllPosts(): Promise<Post[]> {
+  const { data, error } = await supabase
+    .from('posts')
+    .select(`
+      *,
+      author:author_id (
+        name,
+        picture
+      )
+    `)
+    .eq('preview', false)
+    .order('date', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching posts:', error);
+    throw new Error('Database connection failed');
+  }
+
+  return data?.map(post => ({
+    slug: post.slug,
+    title: post.title,
+    date: post.date,
+    coverImage: post.cover_image,
+    author: post.author ? {
+      name: post.author.name,
+      picture: post.author.picture
+    } : null,
+    excerpt: post.excerpt,
+    ogImage: {
+      url: post.og_image_url
+    },
+    content: post.content,
+    preview: post.preview
+  })) || [];
 }

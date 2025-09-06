@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <div className="mb-8 mt-4 flex items-center">
+    <div className="mb-8 mt-4 flex items-center justify-between">
       <Link 
         href="/blog" 
         className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200 font-medium"
@@ -12,6 +12,7 @@ const Header = () => {
         </svg>
         Back to Market Insights Blog
       </Link>
+      
     </div>
   );
 };

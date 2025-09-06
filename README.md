@@ -1,12 +1,17 @@
-# A statically generated blog example using Next.js, Markdown, and TypeScript
+# Horizon Hash - Trading & Finance Blog
 
-This is the existing [blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) plus TypeScript.
+A modern blog built with Next.js, TypeScript, and Supabase for storing trading strategies, technical analysis, and financial insights.
 
-This example showcases Next.js's [Static Generation](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates) feature using Markdown files as the data source.
+This blog uses **Supabase** as the database to store articles, making it scalable and easy to manage thousands of posts. The content is stored in a PostgreSQL database with real-time capabilities.
 
-The blog posts are stored in `/_posts` as Markdown files with front matter support. Adding a new Markdown file in there will create a new blog post.
+## Features
 
-To create the blog posts we use [`remark`](https://github.com/remarkjs/remark) and [`remark-html`](https://github.com/remarkjs/remark-html) to convert the Markdown files into an HTML string, and then send it down as a prop to the page. The metadata of every post is handled by [`gray-matter`](https://github.com/jonschlinkert/gray-matter) and also sent in props to the page.
+- **Database-driven**: Articles stored in Supabase PostgreSQL database
+- **Real-time updates**: Content can be updated instantly
+- **Scalable**: Ready to handle thousands of articles
+- **Modern UI**: Built with Tailwind CSS and Next.js
+- **TypeScript**: Full type safety throughout the application
+- **Admin Panel**: Manage articles through `/admin` interface
 
 ## Demo
 
