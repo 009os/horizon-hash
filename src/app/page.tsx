@@ -3,13 +3,7 @@ import Container from "@/app/_components/container";
 
 export default function Index() {
   return (
-    <main className="min-h-screen relative" style={{
-      backgroundImage: 'url(/horizon.jpg)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      backgroundAttachment: 'fixed'
-    }}>
+    <main className="min-h-screen bg-white relative">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="floating-shapes">
