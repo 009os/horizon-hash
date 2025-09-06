@@ -5,7 +5,7 @@ export type Post = {
   title: string;
   date: string;
   coverImage: string;
-  author: Author;
+  author: Author | null;
   excerpt: string;
   ogImage: {
     url: string;
