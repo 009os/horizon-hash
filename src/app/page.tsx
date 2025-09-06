@@ -3,15 +3,31 @@ import Container from "@/app/_components/container";
 
 export default function Index() {
   return (
-    <main className="min-h-screen bg-white overflow-hidden">
+    <main className="min-h-screen relative" style={{
+      backgroundImage: 'url(/horizon.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed'
+    }}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="floating-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
-          <div className="shape shape-4"></div>
-          <div className="shape shape-5"></div>
+          <div className="shape shape-1">
+            <img src="/btc.png" alt="Bitcoin" className="w-full h-full object-contain rounded-full" />
+          </div>
+          <div className="shape shape-2">
+            <img src="/etherum.png" alt="Ethereum" className="w-full h-full object-contain rounded-full" />
+          </div>
+          <div className="shape shape-3">
+            <img src="/shib.png" alt="Shiba Inu" className="w-full h-full object-contain rounded-full" />
+          </div>
+          <div className="shape shape-4">
+            <img src="/sol.png" alt="Solana" className="w-full h-full object-contain rounded-full" />
+          </div>
+          <div className="shape shape-5">
+            <img src="/xrp.png" alt="XRP" className="w-full h-full object-contain rounded-full" />
+          </div>
         </div>
       </div>
 
