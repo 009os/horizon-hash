@@ -13,7 +13,7 @@ export default async function markdownToHtml(markdown: string) {
       .use(remarkRehype, { allowDangerousHtml: true })
       .use(rehypeRaw)
       .use(rehypeMathjax, { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } })
-      .use(rehypeHighlight, { ignoreMissing: true })
+      .use(rehypeHighlight)
       .use(rehypeStringify)
       .process(markdown);
     

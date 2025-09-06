@@ -9,7 +9,7 @@ type Props = {
   coverImage: string;
   date: string;
   excerpt: string;
-  author?: Author;
+  author: Author | null;
   slug: string;
 };
 
