@@ -802,50 +802,196 @@
   border: 1px solid rgba(59, 130, 246, 0.1);
 }
 
-/* Floating Shapes - Black and White Theme */
+/* Floating Shapes - Eye-Catching Bubble Theme */
 .shape {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(45deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.05));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 
+    0 15px 50px rgba(0, 0, 0, 0.2),
+    0 5px 20px rgba(0, 0, 0, 0.1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: bubbleFloat 6s ease-in-out infinite;
 }
 
-/* Crypto image styling within shapes */
-.shape img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+/* Crypto text styling */
+.crypto-text {
+  font-weight: 800;
+  font-size: 0.9em;
+  color: white;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(255, 255, 255, 0.3);
+  letter-spacing: 1px;
+  z-index: 10;
+  position: relative;
+  text-transform: uppercase;
+}
+
+/* All bubbles - Cool Animated Grey Theme */
+.crypto-btc, .crypto-eth, .crypto-shib, .crypto-sol, .crypto-xrp {
+  background: linear-gradient(135deg, 
+    #1F2937 0%, 
+    #374151 25%, 
+    #4B5563 50%, 
+    #6B7280 75%, 
+    #9CA3AF 100%);
+  border: 2px solid rgba(156, 163, 175, 0.8);
+  box-shadow: 
+    0 20px 60px rgba(31, 41, 55, 0.4),
+    0 8px 25px rgba(75, 85, 99, 0.3),
+    0 4px 12px rgba(107, 114, 128, 0.2),
+    inset 0 3px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.3);
+  animation: coolBubbleFloat 8s ease-in-out infinite, 
+             coolBubbleGlow 4s ease-in-out infinite alternate;
+}
+
+/* Individual bubble variations with different grey tones */
+.crypto-btc {
+  animation-delay: 0s;
+  background: linear-gradient(135deg, 
+    #111827 0%, 
+    #1F2937 30%, 
+    #374151 60%, 
+    #6B7280 100%);
+}
+
+.crypto-eth {
+  animation-delay: 1s;
+  background: linear-gradient(135deg, 
+    #0F172A 0%, 
+    #1E293B 30%, 
+    #334155 60%, 
+    #64748B 100%);
+}
+
+.crypto-shib {
+  animation-delay: 2s;
+  background: linear-gradient(135deg, 
+    #1C1917 0%, 
+    #292524 30%, 
+    #44403C 60%, 
+    #78716C 100%);
+}
+
+.crypto-sol {
+  animation-delay: 3s;
+  background: linear-gradient(135deg, 
+    #0F0F23 0%, 
+    #1E1B4B 30%, 
+    #312E81 60%, 
+    #6366F1 100%);
+}
+
+.crypto-xrp {
+  animation-delay: 4s;
+  background: linear-gradient(135deg, 
+    #1F2937 0%, 
+    #374151 30%, 
+    #4B5563 60%, 
+    #9CA3AF 100%);
+}
+
+/* Hover effects for bubbles */
+.shape:hover {
+  transform: scale(1.15) translateY(-5px);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.25),
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    inset 0 3px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.3);
+  animation-play-state: paused;
+}
+
+/* Cool bubble float animation */
+@keyframes coolBubbleFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1); 
+  }
+  20% { 
+    transform: translateY(-15px) rotate(2deg) scale(1.02); 
+  }
+  40% { 
+    transform: translateY(-8px) rotate(-1deg) scale(0.98); 
+  }
+  60% { 
+    transform: translateY(-20px) rotate(1deg) scale(1.01); 
+  }
+  80% { 
+    transform: translateY(-5px) rotate(-2deg) scale(0.99); 
+  }
+}
+
+/* Cool bubble glow animation */
+@keyframes coolBubbleGlow {
+  0% { 
+    box-shadow: 
+      0 20px 60px rgba(31, 41, 55, 0.4),
+      0 8px 25px rgba(75, 85, 99, 0.3),
+      0 4px 12px rgba(107, 114, 128, 0.2),
+      inset 0 3px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -3px 0 rgba(0, 0, 0, 0.3);
+  }
+  100% { 
+    box-shadow: 
+      0 25px 70px rgba(31, 41, 55, 0.6),
+      0 12px 35px rgba(75, 85, 99, 0.4),
+      0 6px 18px rgba(107, 114, 128, 0.3),
+      inset 0 3px 0 rgba(255, 255, 255, 0.7),
+      inset 0 -3px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+
+/* Cool pulse glow effect for grey bubbles */
+.shape::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
   border-radius: 50%;
-  padding: 8px;
-  transition: opacity 0.3s ease;
-}
-
-/* Preload optimization for crypto images */
-.shape img[loading="eager"] {
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-
-/* Fallback background for loading state */
-.shape {
-  background: linear-gradient(45deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.05));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Loading state for images */
-.shape img:not([src]) {
+  background: linear-gradient(135deg, 
+    rgba(156, 163, 175, 0.3) 0%, 
+    rgba(107, 114, 128, 0.2) 50%, 
+    rgba(75, 85, 99, 0.1) 100%);
   opacity: 0;
+  animation: coolPulseGlow 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(8px);
 }
 
-.shape img[src] {
-  opacity: 1;
+@keyframes coolPulseGlow {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(1);
+    filter: blur(8px);
+  }
+  25% { 
+    opacity: 0.2;
+    transform: scale(1.05);
+    filter: blur(6px);
+  }
+  50% { 
+    opacity: 0.4;
+    transform: scale(1.1);
+    filter: blur(4px);
+  }
+  75% { 
+    opacity: 0.2;
+    transform: scale(1.05);
+    filter: blur(6px);
+  }
 }
 
 /* Particle Effects for Title */
