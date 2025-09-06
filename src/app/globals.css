@@ -822,6 +822,30 @@
   object-fit: contain;
   border-radius: 50%;
   padding: 8px;
+  transition: opacity 0.3s ease;
+}
+
+/* Preload optimization for crypto images */
+.shape img[loading="eager"] {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Fallback background for loading state */
+.shape {
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Loading state for images */
+.shape img:not([src]) {
+  opacity: 0;
+}
+
+.shape img[src] {
+  opacity: 1;
 }
 
 /* Particle Effects for Title */

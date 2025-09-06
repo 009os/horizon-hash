@@ -55,6 +55,13 @@ export default function RootLayout({
         <meta name="theme-color" content="#000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         
+        {/* Preload crypto images for faster loading */}
+        <link rel="preload" as="image" href="/btc.png" />
+        <link rel="preload" as="image" href="/etherum.png" />
+        <link rel="preload" as="image" href="/shib.png" />
+        <link rel="preload" as="image" href="/sol.png" />
+        <link rel="preload" as="image" href="/xrp.png" />
+        
         {/* MathJax for mathematical equations */}
         <script
           id="mathjax-config"

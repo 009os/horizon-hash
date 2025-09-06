@@ -8,19 +8,45 @@ export default function Index() {
       <div className="absolute inset-0 overflow-hidden">
         <div className="floating-shapes">
           <div className="shape shape-1">
-            <img src="/btc.png" alt="Bitcoin" className="w-full h-full object-contain rounded-full" />
+            <img 
+              src="/btc.png" 
+              alt="Bitcoin" 
+              className="w-full h-full object-contain rounded-full" 
+              loading="eager"
+              fetchPriority="high"
+            />
           </div>
           <div className="shape shape-2">
-            <img src="/etherum.png" alt="Ethereum" className="w-full h-full object-contain rounded-full" />
+            <img 
+              src="/etherum.png" 
+              alt="Ethereum" 
+              className="w-full h-full object-contain rounded-full" 
+              loading="eager"
+            />
           </div>
           <div className="shape shape-3">
-            <img src="/shib.png" alt="Shiba Inu" className="w-full h-full object-contain rounded-full" />
+            <img 
+              src="/shib.png" 
+              alt="Shiba Inu" 
+              className="w-full h-full object-contain rounded-full" 
+              loading="eager"
+            />
           </div>
           <div className="shape shape-4">
-            <img src="/sol.png" alt="Solana" className="w-full h-full object-contain rounded-full" />
+            <img 
+              src="/sol.png" 
+              alt="Solana" 
+              className="w-full h-full object-contain rounded-full" 
+              loading="eager"
+            />
           </div>
           <div className="shape shape-5">
-            <img src="/xrp.png" alt="XRP" className="w-full h-full object-contain rounded-full" />
+            <img 
+              src="/xrp.png" 
+              alt="XRP" 
+              className="w-full h-full object-contain rounded-full" 
+              loading="eager"
+            />
           </div>
         </div>
       </div>
