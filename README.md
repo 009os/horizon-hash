@@ -1,4 +1,4 @@
-# Horizon Hash - Trading & Finance Blog
+# Horizon Hash
 
 A modern blog built with Next.js, TypeScript, and Supabase for storing trading strategies, technical analysis, and financial insights.
 

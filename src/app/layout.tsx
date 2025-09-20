@@ -8,8 +8,8 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: `${CMS_NAME} - Trading & Finance Insights`,
-  description: `A blog about trading strategies, technical analysis, and financial insights by Omji Shukla.`,
+  title: `${CMS_NAME}`,
+  description: `A blog about trading strategies, technical analysis, and financial insights by Horizon Hash.`,
   openGraph: {
     images: [HOME_OG_IMAGE_URL],
   },
@@ -26,27 +26,27 @@ export default function RootLayout({
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
+          href="/logo.webp"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/webp"
           sizes="32x32"
-          href="/favicon/favicon-32x32.png"
+          href="/logo.webp"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/webp"
           sizes="16x16"
-          href="/favicon/favicon-16x16.png"
+          href="/logo.webp"
         />
         <link rel="manifest" href="/favicon/site.webmanifest" />
         <link
           rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
+          href="/logo.webp"
           color="#000000"
         />
-        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <link rel="shortcut icon" href="/logo.webp" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="msapplication-config"

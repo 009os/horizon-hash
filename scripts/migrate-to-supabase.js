@@ -29,6 +29,10 @@ async function migrateArticles() {
     // First, create authors
     const authors = [
       {
+        name: 'Horizon',
+        picture: '/logo.webp'
+      },
+      {
         name: 'JJ',
         picture: '/assets/blog/authors/jj.jpeg'
       },

@@ -14,13 +14,16 @@ export default async function Blog() {
     // Handle case when no posts are available
     if (!allPosts || allPosts.length === 0) {
       return (
-        <main>
-          <div className="bg-white shadow-sm border-b">
+        <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative" style={{
+          backdropFilter: 'blur(1px)',
+          backgroundAttachment: 'fixed'
+        }}>
+          <div className="bg-gray-800/50 shadow-sm border-b border-gray-700 backdrop-blur-sm">
             <Container>
               <div className="py-4">
                 <Link 
                   href="/" 
-                  className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  className="inline-flex items-center text-gray-300 hover:text-white transition-colors duration-200"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -34,11 +37,11 @@ export default async function Blog() {
           <Container>
             <Intro />
             <div className="text-center py-16">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">No Articles Found</h2>
-              <p className="text-gray-600 mb-8">
+              <h2 className="text-2xl font-bold text-white mb-4">No Articles Found</h2>
+              <p className="text-gray-300 mb-8">
                 It looks like there are no articles available yet. This might be because:
               </p>
-              <ul className="text-left max-w-md mx-auto text-gray-600 space-y-2">
+              <ul className="text-left max-w-md mx-auto text-gray-300 space-y-2">
                 <li>• The database connection is not configured</li>
                 <li>• Articles haven't been migrated yet</li>
                 <li>• All articles are in preview mode</li>
@@ -65,14 +68,17 @@ export default async function Blog() {
     const morePosts = allPosts.slice(1);
 
     return (
-      <main>
+      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative" style={{
+        backdropFilter: 'blur(1px)',
+        backgroundAttachment: 'fixed'
+      }}>
         {/* Back to Home Button */}
-        <div className="bg-white shadow-sm border-b">
+        <div className="bg-gray-800/50 shadow-sm border-b border-gray-700 backdrop-blur-sm">
           <Container>
             <div className="py-4">
               <Link 
                 href="/" 
-                className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                className="inline-flex items-center text-gray-300 hover:text-white transition-colors duration-200"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />

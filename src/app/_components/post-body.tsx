@@ -20,7 +20,7 @@ export function PostBody({ content }: Props) {
             Want to read more?
           </h3>
           <p className="text-gray-600 mb-6">
-            Explore more insights and strategies in our Market Insights collection
+            Explore more insights and strategies in our Market Insights & Quant collection
           </p>
           <Link 
             href="/blog" 
