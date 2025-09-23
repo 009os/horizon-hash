@@ -5,7 +5,6 @@ A modern blog built with Next.js, TypeScript, and Supabase for storing trading s
 This blog uses **Supabase** as the database to store articles, making it scalable and easy to manage thousands of posts. The content is stored in a PostgreSQL database with real-time capabilities.
 
 ## Features
-
 - **Database-driven**: Articles stored in Supabase PostgreSQL database
 - **Real-time updates**: Content can be updated instantly
 - **Scalable**: Ready to handle thousands of articles
