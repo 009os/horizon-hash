@@ -1,4 +1,5 @@
 import Footer from "@/app/_components/footer";
+import ElegantHeader from "@/app/_components/elegant-header";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import cn from "classnames";
@@ -108,7 +109,8 @@ export default function RootLayout({
       </head>
       <body className="font-body body-text">
         <ThemeSwitcher />
-        <div className="min-h-screen">{children}</div>
+        <ElegantHeader />
+        <div className="min-h-screen pt-16">{children}</div>
       </body>
     </html>
   );

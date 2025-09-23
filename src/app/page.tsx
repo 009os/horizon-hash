@@ -46,7 +46,7 @@ export default function Index() {
 
       <Container>
         {/* Hero Section */}
-        <section className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center">
+        <section className="relative z-10 flex flex-col items-center justify-start text-center pt-20">
           {/* Main Title with Split Animation */}
           <div className="mb-8 relative">
             {/* Particle Effects */}
@@ -58,16 +58,12 @@ export default function Index() {
               <div className="particle particle-5"></div>
             </div>
             
-            <h1 className="text-6xl sm:text-8xl lg:text-9xl font-bold text-white relative z-10 flex items-center justify-center">
+            <h1 className="text-6xl sm:text-8xl lg:text-9xl font-formal text-white relative z-10 flex items-center justify-center animate-gentle-swing">
               <span className="inline-block animate-slide-in-left-continuous min-w-0 flex-shrink-0">
                 HORIZON
               </span>
-              <span className="inline-block mx-4 sm:mx-6 md:mx-8 lg:mx-12 animate-bounce-between flex-shrink-0">
-                <img 
-                  src="/logo.webp" 
-                  alt="HORIZON HASH Logo" 
-                  className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain rounded-full"
-                />
+              <span className="inline-block mx-1 sm:mx-2 md:mx-3 lg:mx-4 flex-shrink-0">
+                &nbsp;
               </span>
               <span className="inline-block animate-slide-in-right-continuous min-w-0 flex-shrink-0" style={{ animationDelay: '0.5s' }}>
                 HASH
@@ -76,14 +72,14 @@ export default function Index() {
           </div>
 
           {/* Subtitle */}
-          <div className="mb-12 animate-fade-in-up animate-delay-300">
+          <div className="mb-8 animate-fade-in-up animate-delay-300">
             <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 font-light">
               Decoding the Future of Digital Markets
             </p>
           </div>
 
           {/* Blog Sections */}
-          <div className="mb-16 animate-fade-in-up animate-delay-500">
+          <div className="mb-8 animate-fade-in-up animate-delay-500">
             <div className="tree-container">
               <button className="tree-root btn-secondary-bw">
                 <span className="btn-content">Explore Blogs</span>
