@@ -60,13 +60,13 @@ export default function Index() {
             
             <h1 className="text-6xl sm:text-7xl lg:text-8xl font-formal text-white relative z-10 flex items-center justify-center animate-gentle-swing">
               <span className="inline-block animate-slide-in-left-continuous min-w-0 flex-shrink-0">
-                HORIZON
+                Horizon
               </span>
               <span className="inline-block mx-1 sm:mx-1 md:mx-2 lg:mx-2 flex-shrink-0">
                 &nbsp;
               </span>
               <span className="inline-block animate-slide-in-right-continuous min-w-0 flex-shrink-0" style={{ animationDelay: '0.5s' }}>
-                HASH
+                Hash
               </span>
             </h1>
           </div>
