@@ -47,7 +47,7 @@ export default function Index() {
       <Container>
         {/* Hero Section */}
         <section className="relative z-10 flex flex-col items-center justify-start text-center pt-20">
-          {/* Main Title with Split Animation */}
+          {/* Main Title with Split Animation - Optimized */}
           <div className="mb-8 relative">
             {/* Particle Effects */}
             <div className="absolute inset-0 pointer-events-none">
