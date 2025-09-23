@@ -58,11 +58,11 @@ export default function Index() {
               <div className="particle particle-5"></div>
             </div>
             
-            <h1 className="text-6xl sm:text-8xl lg:text-9xl font-formal text-white relative z-10 flex items-center justify-center animate-gentle-swing">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-formal text-white relative z-10 flex items-center justify-center animate-gentle-swing">
               <span className="inline-block animate-slide-in-left-continuous min-w-0 flex-shrink-0">
                 HORIZON
               </span>
-              <span className="inline-block mx-1 sm:mx-2 md:mx-3 lg:mx-4 flex-shrink-0">
+              <span className="inline-block mx-1 sm:mx-1 md:mx-2 lg:mx-2 flex-shrink-0">
                 &nbsp;
               </span>
               <span className="inline-block animate-slide-in-right-continuous min-w-0 flex-shrink-0" style={{ animationDelay: '0.5s' }}>
