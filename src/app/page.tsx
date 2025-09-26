@@ -59,13 +59,13 @@ export default function Index() {
             </div>
             
             <h1 className="text-6xl sm:text-7xl lg:text-8xl font-formal text-white relative z-10 flex items-center justify-center animate-gentle-swing">
-              <span className="inline-block animate-slide-in-left-continuous min-w-0 flex-shrink-0">
+              <span className="inline-block min-w-0 flex-shrink-0">
                 Horizon
               </span>
-              <span className="inline-block mx-1 sm:mx-1 md:mx-2 lg:mx-2 flex-shrink-0">
+              <span className="inline-block mx-0 sm:mx-0 md:mx-0 lg:mx-0 flex-shrink-0">
                 &nbsp;
               </span>
-              <span className="inline-block animate-slide-in-right-continuous min-w-0 flex-shrink-0" style={{ animationDelay: '0.5s' }}>
+              <span className="inline-block min-w-0 flex-shrink-0">
                 Hash
               </span>
             </h1>

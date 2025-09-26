@@ -1266,18 +1266,7 @@
   }
 }
 
-/* Title Glow Effect */
-h1 span {
-  animation: warmGlow 3s ease-in-out infinite;
-}
-
-h1 span:nth-child(1) {
-  animation-delay: 0s;
-}
-
-h1 span:nth-child(3) {
-  animation-delay: 1.5s;
-}
+/* Title Glow Effect - Removed per user request */
 
 @keyframes particleFloat {
   0%, 100% {
