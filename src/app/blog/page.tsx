@@ -4,7 +4,7 @@ import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
 import { getAllPosts } from "@/lib/api";
 import Link from "next/link";
-import Footer from "@/app/_components/footer";
+import BlogFooter from "@/app/_components/blog-footer";
 import ServerOverloaded from "@/app/_components/server-overloaded";
 
 export default async function Blog() {
@@ -44,7 +44,7 @@ export default async function Blog() {
             </div>
           </Container>
           
-          <Footer />
+          <BlogFooter />
         </main>
       );
     }
@@ -67,11 +67,12 @@ export default async function Blog() {
             author={heroPost.author}
             slug={heroPost.slug}
             excerpt={heroPost.excerpt}
+            content={heroPost.content}
           />
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
         
-        <Footer />
+        <BlogFooter />
       </main>
     );
   } catch (error) {

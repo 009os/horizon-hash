@@ -8,6 +8,7 @@ import Container from "@/app/_components/container";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import ServerOverloaded from "@/app/_components/server-overloaded";
+import BlogFooter from "@/app/_components/blog-footer";
 
 export default async function Post(props: Params) {
   try {
@@ -30,10 +31,12 @@ export default async function Post(props: Params) {
               coverImage={post.coverImage}
               date={post.date}
               author={post.author}
+              content={post.content}
             />
             <PostBody content={content} />
           </article>
         </Container>
+        <BlogFooter />
       </main>
     );
   } catch (error) {

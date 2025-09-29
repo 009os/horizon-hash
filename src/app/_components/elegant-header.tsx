@@ -7,7 +7,7 @@ const ElegantHeader = () => {
   const pathname = usePathname();
   
   // Check if we're on a dark theme page
-  const isDarkPage = pathname === "/" || pathname === "/blog" || pathname.startsWith("/posts/");
+  const isDarkPage = pathname === "/" || pathname === "/blog" || pathname.startsWith("/posts/") || pathname === "/contact" || pathname === "/about";
   
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 ${isDarkPage ? 'elegant-header-dark' : 'elegant-header'}`}>

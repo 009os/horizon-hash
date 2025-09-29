@@ -3,6 +3,7 @@ import Link from "next/link";
 import Avatar from "./avatar";
 import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
+import { calculateReadingTime, formatReadingTime } from "@/lib/readingTime";
 
 type Props = {
   title: string;
@@ -11,6 +12,7 @@ type Props = {
   excerpt: string;
   author: Author | null;
   slug: string;
+  content?: string;
 };
 
 export function PostPreview({
@@ -20,6 +22,7 @@ export function PostPreview({
   excerpt,
   author,
   slug,
+  content,
 }: Props) {
   return (
     <Link href={`/posts/${slug}`} className="block">
@@ -32,6 +35,11 @@ export function PostPreview({
         </h3>
         <div className="text-sm sm:text-lg mb-3 sm:mb-5 text-gray-300">
           <DateFormatter dateString={date} />
+          {content && (
+            <div className="mt-1 text-xs sm:text-sm text-gray-400">
+              {formatReadingTime(calculateReadingTime(content))}
+            </div>
+          )}
           {author && (
             <div className="mt-1 text-xs sm:text-sm" style={{ color: 'white' }}>
               by {author.name}

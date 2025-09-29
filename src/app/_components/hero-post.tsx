@@ -3,6 +3,7 @@ import CoverImage from "@/app/_components/cover-image";
 import { type Author } from "@/interfaces/author";
 import Link from "next/link";
 import DateFormatter from "./date-formatter";
+import { calculateReadingTime, formatReadingTime } from "@/lib/readingTime";
 
 type Props = {
   title: string;
@@ -11,6 +12,7 @@ type Props = {
   excerpt: string;
   author: Author | null;
   slug: string;
+  content?: string;
 };
 
 export function HeroPost({
@@ -20,6 +22,7 @@ export function HeroPost({
   excerpt,
   author,
   slug,
+  content,
 }: Props) {
   return (
     <Link href={`/posts/${slug}`} className="block">
@@ -34,6 +37,11 @@ export function HeroPost({
             </h3>
             <div className="mb-3 sm:mb-4 md:mb-0 text-sm sm:text-base text-gray-300">
               <DateFormatter dateString={date} />
+              {content && (
+                <div className="mt-1 text-xs sm:text-sm text-gray-400">
+                  {formatReadingTime(calculateReadingTime(content))}
+                </div>
+              )}
               {author && (
                 <div className="mt-1 text-xs sm:text-sm" style={{ color: 'white' }}>
                   by {author.name}

@@ -3,15 +3,17 @@ import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
 import { PostTitle } from "@/app/_components/post-title";
 import { type Author } from "@/interfaces/author";
+import { calculateReadingTime, formatReadingTime } from "@/lib/readingTime";
 
 type Props = {
   title: string;
   coverImage: string;
   date: string;
   author: Author | null;
+  content?: string;
 };
 
-export function PostHeader({ title, coverImage, date, author }: Props) {
+export function PostHeader({ title, coverImage, date, author, content }: Props) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -31,6 +33,11 @@ export function PostHeader({ title, coverImage, date, author }: Props) {
         )}
         <div className="mb-6 text-lg">
           <DateFormatter dateString={date} />
+          {content && (
+            <div className="mt-2 text-sm text-gray-500">
+              {formatReadingTime(calculateReadingTime(content))}
+            </div>
+          )}
         </div>
       </div>
     </>
