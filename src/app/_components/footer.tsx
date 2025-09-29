@@ -38,25 +38,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Newsletter Signup */}
-          <div className="mt-12 pt-8 border-t border-gray-800">
-            <div className="max-w-md mx-auto text-center">
-              <h3 className="text-white font-semibold mb-2">Stay Updated</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Get the latest market insights and analysis delivered to your inbox.
-              </p>
-              <div className="flex gap-2">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
-                />
-                <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Bar */}
