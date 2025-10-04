@@ -11,15 +11,21 @@ type Props = {
   date: string;
   author: Author | null;
   content?: string;
+  viewCounter?: React.ReactNode;
 };
 
-export function PostHeader({ title, coverImage, date, author, content }: Props) {
+export function PostHeader({ title, coverImage, date, author, content, viewCounter }: Props) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
       {author && (
         <div className="hidden md:block md:mb-12">
-          <Avatar name={author.name} picture={author.picture} textColor="black" />
+          <div className="flex justify-between items-center">
+            <Avatar name={author.name} picture={author.picture} textColor="black" />
+            <div className="flex-shrink-0">
+              {viewCounter}
+            </div>
+          </div>
         </div>
       )}
       <div className="mb-8 md:mb-16 sm:mx-0">
@@ -28,7 +34,12 @@ export function PostHeader({ title, coverImage, date, author, content }: Props) 
       <div className="max-w-4xl mx-auto">
         {author && (
           <div className="block md:hidden mb-6">
-            <Avatar name={author.name} picture={author.picture} textColor="black" />
+            <div className="flex justify-between items-center">
+              <Avatar name={author.name} picture={author.picture} textColor="black" />
+              <div className="flex-shrink-0">
+                {viewCounter}
+              </div>
+            </div>
           </div>
         )}
         <div className="mb-6 text-lg">

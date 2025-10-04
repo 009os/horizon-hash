@@ -9,6 +9,8 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import ServerOverloaded from "@/app/_components/server-overloaded";
 import BlogFooter from "@/app/_components/blog-footer";
+import ViewCounter from "@/app/_components/view-counter";
+import BackToBlogButton from "@/app/_components/back-to-blog-button";
 
 export default async function Post(props: Params) {
   try {
@@ -24,6 +26,12 @@ export default async function Post(props: Params) {
     return (
       <main>
         <Alert preview={post.preview} />
+        
+        {/* Back button outside blog width */}
+        <div className="fixed top-28 left-16 z-50">
+          <BackToBlogButton />
+        </div>
+        
         <Container>
           <article className="mb-32">
             <PostHeader
@@ -32,7 +40,9 @@ export default async function Post(props: Params) {
               date={post.date}
               author={post.author}
               content={post.content}
+              viewCounter={<ViewCounter slug={params.slug} />}
             />
+            
             <PostBody content={content} />
           </article>
         </Container>
