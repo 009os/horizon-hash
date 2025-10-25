@@ -14,85 +14,93 @@ export default function Index() {
           {/* Animated Grid Background */}
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
           
+          {/* Universe Background Elements */}
+          <div className="absolute inset-0">
+            {/* Nebula Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-indigo-900/20 animate-nebula-flow"></div>
+            
+            {/* Shooting Stars */}
+            <div className="absolute top-20 left-0 w-2 h-2 bg-white rounded-full animate-shooting-star opacity-80"></div>
+            <div className="absolute top-40 right-0 w-1 h-1 bg-blue-300 rounded-full animate-shooting-star opacity-60" style={{animationDelay: '2s'}}></div>
+            <div className="absolute top-60 left-1/4 w-1.5 h-1.5 bg-purple-300 rounded-full animate-shooting-star opacity-70" style={{animationDelay: '4s'}}></div>
+            
+            {/* Constellation Stars */}
+            <div className="absolute top-32 left-1/3 w-1 h-1 bg-white rounded-full animate-constellation-twinkle"></div>
+            <div className="absolute top-48 right-1/3 w-1 h-1 bg-blue-200 rounded-full animate-constellation-twinkle" style={{animationDelay: '1s'}}></div>
+            <div className="absolute top-72 left-1/2 w-1 h-1 bg-purple-200 rounded-full animate-constellation-twinkle" style={{animationDelay: '2s'}}></div>
+            <div className="absolute top-24 right-1/4 w-1 h-1 bg-indigo-200 rounded-full animate-constellation-twinkle" style={{animationDelay: '3s'}}></div>
+            
+            {/* Galaxy Spiral */}
+            <div className="absolute top-1/4 right-1/4 w-32 h-32 border border-white/10 rounded-full animate-galaxy-spin opacity-30"></div>
+            <div className="absolute top-1/4 right-1/4 w-24 h-24 border border-blue-300/20 rounded-full animate-galaxy-spin opacity-40" style={{animationDelay: '5s'}}></div>
+            <div className="absolute top-1/4 right-1/4 w-16 h-16 border border-purple-300/30 rounded-full animate-galaxy-spin opacity-50" style={{animationDelay: '10s'}}></div>
+          </div>
+          
           {/* Floating Crypto Bubbles */}
           <div className="floating-shapes">
-            <div className="shape shape-1 crypto-btc">
+            <div className="shape shape-1 crypto-btc animate-cosmic-drift">
               <span className="crypto-text">BTC</span>
             </div>
-            <div className="shape shape-2 crypto-eth">
+            <div className="shape shape-2 crypto-eth animate-stellar-pulse">
               <span className="crypto-text">ETH</span>
             </div>
-            <div className="shape shape-3 crypto-shib">
+            <div className="shape shape-3 crypto-shib animate-cosmic-drift" style={{animationDelay: '2s'}}>
               <span className="crypto-text">SHIB</span>
             </div>
-            <div className="shape shape-4 crypto-sol">
+            <div className="shape shape-4 crypto-sol animate-stellar-pulse" style={{animationDelay: '1s'}}>
               <span className="crypto-text">SOL</span>
             </div>
-            <div className="shape shape-5 crypto-xrp">
+            <div className="shape shape-5 crypto-xrp animate-cosmic-drift" style={{animationDelay: '3s'}}>
               <span className="crypto-text">XRP</span>
+            </div>
+            <div className="shape shape-6 crypto-usdt animate-stellar-pulse" style={{animationDelay: '2s'}}>
+              <span className="crypto-text">USDT</span>
+            </div>
+            <div className="shape shape-7 crypto-bnb animate-stellar-pulse" style={{animationDelay: '3s'}}>
+              <span className="crypto-text">BNB</span>
+            </div>
+            <div className="shape shape-8 crypto-doge animate-stellar-pulse" style={{animationDelay: '4s'}}>
+              <span className="crypto-text">DOGE</span>
             </div>
           </div>
           
-          {/* Animated Particles */}
+          {/* Enhanced Animated Particles */}
           <div className="particles-container">
-            <div className="particle particle-1"></div>
-            <div className="particle particle-2"></div>
-            <div className="particle particle-3"></div>
-            <div className="particle particle-4"></div>
-            <div className="particle particle-5"></div>
-            <div className="particle particle-6"></div>
-            <div className="particle particle-7"></div>
-            <div className="particle particle-8"></div>
+            <div className="particle particle-1 animate-constellation-twinkle"></div>
+            <div className="particle particle-2 animate-constellation-twinkle" style={{animationDelay: '1s'}}></div>
+            <div className="particle particle-3 animate-constellation-twinkle" style={{animationDelay: '2s'}}></div>
+            <div className="particle particle-4 animate-constellation-twinkle" style={{animationDelay: '3s'}}></div>
+            <div className="particle particle-5 animate-constellation-twinkle" style={{animationDelay: '4s'}}></div>
+            <div className="particle particle-6 animate-constellation-twinkle" style={{animationDelay: '5s'}}></div>
+            <div className="particle particle-7 animate-constellation-twinkle" style={{animationDelay: '6s'}}></div>
+            <div className="particle particle-8 animate-constellation-twinkle" style={{animationDelay: '7s'}}></div>
           </div>
         </div>
 
         <Container>
           {/* Hero Section */}
-          <section className="relative z-10 flex flex-col items-center justify-start text-center pt-20">
-            {/* Main Title with Split Animation - Optimized */}
-            <div className="mb-8 relative">
-              {/* Particle Effects */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="particle particle-1"></div>
-                <div className="particle particle-2"></div>
-                <div className="particle particle-3"></div>
-                <div className="particle particle-4"></div>
-                <div className="particle particle-5"></div>
-              </div>
-              
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-formal text-white relative z-10 flex items-center justify-center animate-gentle-swing">
-                <span className="inline-block min-w-0 flex-shrink-0">
-                  Horizon
-                </span>
-                <span className="inline-block mx-0 sm:mx-0 md:mx-0 lg:mx-0 flex-shrink-0">
-                  &nbsp;
-                </span>
-                <span className="inline-block min-w-0 flex-shrink-0">
-                  Hash
-                </span>
-              </h1>
-            </div>
+          <section className="relative z-10 flex flex-col items-center justify-start text-center pt-40">
 
-            {/* Subtitle */}
+            {/* Main Heading */}
             <div className="mb-8 animate-fade-in-up animate-delay-300">
-              <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 font-light">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white font-formal font-bold text-center leading-tight sm:leading-tight md:leading-tight lg:leading-tight animate-pulse-slow hover:animate-bounce-gentle transition-all duration-500">
                 Decoding the Future of Digital Markets
-              </p>
+              </h1>
             </div>
 
             {/* Blog Sections */}
             <div className="mb-8 animate-fade-in-up animate-delay-500">
-              <div className="tree-container">
-                <button className="tree-root btn-secondary-bw">
+              <div className="tree-container animate-float-slow">
+                <button className="tree-root btn-secondary-bw hover:animate-pulse hover:scale-105 transition-all duration-300 animate-glow-slow">
                   <span className="btn-content">Explore Blogs</span>
                 </button>
                 
                 <div className="tree-branches">
-                  <Link href="/blog" className="tree-branch branch-left">
+                  <Link href="/blog" className="tree-branch branch-left hover:animate-bounce-gentle hover:scale-110 transition-all duration-300 animate-slide-in-left">
                     <span className="branch-content">Market Insights & Quant</span>
                   </Link>
                   
-                  <button className="tree-branch branch-right">
+                  <button className="tree-branch branch-right hover:animate-bounce-gentle hover:scale-110 transition-all duration-300 animate-slide-in-right">
                     <span className="branch-content">Crypto History</span>
                   </button>
                 </div>
