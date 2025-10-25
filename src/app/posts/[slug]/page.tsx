@@ -27,8 +27,8 @@ export default async function Post(props: Params) {
       <main>
         <Alert preview={post.preview} />
         
-        {/* Back button outside blog width */}
-        <div className="fixed top-28 left-16 z-50">
+        {/* Back button with responsive positioning */}
+        <div className="fixed top-6 left-4 md:top-28 md:left-16 z-50">
           <BackToBlogButton />
         </div>
         
