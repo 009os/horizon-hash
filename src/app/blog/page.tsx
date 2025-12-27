@@ -2,62 +2,40 @@ import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
 import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
-import { getAllPosts } from "@/lib/api";
-import Link from "next/link";
+import { apiClient } from "@/core/api/client";
 import BlogFooter from "@/app/_components/blog-footer";
 import ServerOverloaded from "@/app/_components/server-overloaded";
+import { DatabaseError, NetworkError } from "@/core/errors/app-error";
+import { logger } from "@/core/utils/logger";
+
+const MAIN_STYLES = "min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative";
+const BACKGROUND_STYLE = { backdropFilter: 'blur(1px)', backgroundAttachment: 'fixed' as const };
 
 export default async function Blog() {
   try {
-    const allPosts = await getAllPosts();
+    const allPosts = await apiClient.getPosts();
 
-    // Handle case when no posts are available
-    if (!allPosts || allPosts.length === 0) {
+    if (allPosts.length === 0) {
       return (
-        <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative" style={{
-          backdropFilter: 'blur(1px)',
-          backgroundAttachment: 'fixed'
-        }}>
-
+        <main className={MAIN_STYLES} style={BACKGROUND_STYLE}>
           <Container>
             <Intro />
             <div className="text-center py-16">
               <h2 className="text-2xl font-bold text-white mb-4">No Articles Found</h2>
               <p className="text-gray-300 mb-8">
-                It looks like there are no articles available yet. This might be because:
+                It looks like there are no articles available yet.
               </p>
-              <ul className="text-left max-w-md mx-auto text-gray-300 space-y-2">
-                <li>• The database connection is not configured</li>
-                <li>• Articles haven't been migrated yet</li>
-                <li>• All articles are in preview mode</li>
-              </ul>
-              <div className="mt-8">
-                <a 
-                  href="https://supabase.com/dashboard" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Go to Supabase Dashboard
-                </a>
-              </div>
             </div>
           </Container>
-          
           <BlogFooter />
         </main>
       );
     }
 
-    const heroPost = allPosts[0];
-    const morePosts = allPosts.slice(1);
+    const [heroPost, ...morePosts] = allPosts;
 
     return (
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative" style={{
-        backdropFilter: 'blur(1px)',
-        backgroundAttachment: 'fixed'
-      }}>
-
+      <main className={MAIN_STYLES} style={BACKGROUND_STYLE}>
         <Container>
           <Intro />
           <HeroPost
@@ -71,12 +49,19 @@ export default async function Blog() {
           />
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
-        
         <BlogFooter />
       </main>
     );
   } catch (error) {
-    console.error('🚀 Server overloaded! Database connection failed:', error);
+    logger.error('Failed to load blog posts', error);
+    
+    // Handle all known error types gracefully
+    if (error instanceof DatabaseError || error instanceof NetworkError) {
+      return <ServerOverloaded />;
+    }
+    
+    // For unknown errors, still show the error page instead of crashing
+    logger.error('Unexpected error type', error);
     return <ServerOverloaded />;
   }
 }

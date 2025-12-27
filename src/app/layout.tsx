@@ -77,9 +77,7 @@ export default function RootLayout({
                 },
                 startup: {
                   pageReady: () => {
-                    return window.MathJax.startup.defaultPageReady().then(() => {
-                      console.log('MathJax is ready');
-                    });
+                    return window.MathJax.startup.defaultPageReady();
                   }
                 }
               };

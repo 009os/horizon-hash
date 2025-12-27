@@ -1,58 +1,49 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 interface ViewCounterProps {
-  slug: string
+  slug: string;
 }
 
+const SESSION_STORAGE_KEY = (slug: string) => `viewed_${slug}`;
+
 export default function ViewCounter({ slug }: ViewCounterProps) {
-  const [viewCount, setViewCount] = useState<number>(0)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [viewCount, setViewCount] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    if (!slug) return;
+
     const trackView = async () => {
-      if (!slug) return
-
       try {
-        // Check if this article was already viewed in this session
-        const sessionKey = `viewed_${slug}`
-        const hasViewed = typeof window !== 'undefined' ? sessionStorage.getItem(sessionKey) : null
-        console.log(`ViewCounter for ${slug}: hasViewed=${hasViewed}`)
+        const sessionKey = SESSION_STORAGE_KEY(slug);
+        const hasViewed = typeof window !== 'undefined' 
+          ? sessionStorage.getItem(sessionKey) 
+          : null;
         
-        if (hasViewed) {
-          // Just get the current count without incrementing
-          const response = await fetch(`/api/posts/${slug}/views`)
-          if (response.ok) {
-            const data = await response.json()
-            setViewCount(data.viewCount)
-          }
-          setIsLoading(false)
-          return
-        }
-
-        // Increment only if this is the first view in this session
-        const response = await fetch(`/api/posts/${slug}/views`, {
-          method: 'POST',
-        })
+        const endpoint = `/api/posts/${slug}/views`;
+        const method = hasViewed ? 'GET' : 'POST';
+        
+        const response = await fetch(endpoint, { method });
         
         if (response.ok) {
-          const data = await response.json()
-          setViewCount(data.viewCount)
-          // Mark as viewed in this session
-          if (typeof window !== 'undefined') {
-            sessionStorage.setItem(sessionKey, 'true')
+          const { viewCount: count } = await response.json();
+          setViewCount(count);
+          
+          if (!hasViewed && typeof window !== 'undefined') {
+            sessionStorage.setItem(sessionKey, 'true');
           }
         }
-        setIsLoading(false)
       } catch (error) {
-        console.error('Error tracking view:', error)
-        setIsLoading(false)
+        // Silently fail - view count is not critical
+      } finally {
+        setIsLoading(false);
       }
-    }
+    };
 
-    trackView()
-  }, [slug])
+    trackView();
+  }, [slug]);
 
   return (
     <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -76,5 +67,5 @@ export default function ViewCounter({ slug }: ViewCounterProps) {
       </svg>
       <span className="font-bold">{isLoading ? '...' : `${viewCount} views`}</span>
     </div>
-  )
+  );
 }

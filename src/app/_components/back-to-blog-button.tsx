@@ -22,7 +22,7 @@ export default function BackToBlogButton() {
         {/* Animated arrow */}
         <div className="relative">
           {/* Main arrow */}
-          <svg 
+      <svg 
             className={`w-5 h-5 md:w-6 md:h-6 text-gray-700 group-hover:text-white transition-all duration-300 transform ${isHovered ? 'translate-x-[-2px]' : 'translate-x-0'}`}
             fill="none" 
             stroke="currentColor" 
@@ -39,17 +39,17 @@ export default function BackToBlogButton() {
           {/* Trail effect */}
           <svg 
             className={`absolute inset-0 w-5 h-5 md:w-6 md:h-6 text-gray-400 opacity-0 group-hover:opacity-60 transition-all duration-300 transform ${isHovered ? 'translate-x-[-4px]' : 'translate-x-0'}`}
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
             strokeWidth={1.5}
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              d="M10 19l-7-7m0 0l7-7m-7 7h18" 
-            />
-          </svg>
+      >
+        <path 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          d="M10 19l-7-7m0 0l7-7m-7 7h18" 
+        />
+      </svg>
         </div>
         
         {/* Floating particles effect */}

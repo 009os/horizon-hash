@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllPosts, getPostBySlug } from "@/lib/api";
+import { apiClient } from "@/core/api/client";
 import { CMS_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import Alert from "@/app/_components/alert";
@@ -11,27 +11,25 @@ import ServerOverloaded from "@/app/_components/server-overloaded";
 import BlogFooter from "@/app/_components/blog-footer";
 import ViewCounter from "@/app/_components/view-counter";
 import BackToBlogButton from "@/app/_components/back-to-blog-button";
+import { NotFoundError, DatabaseError, NetworkError } from "@/core/errors/app-error";
+import { logger } from "@/core/utils/logger";
 
-export default async function Post(props: Params) {
+type Params = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function Post({ params }: Params) {
   try {
-    const params = await props.params;
-    const post = await getPostBySlug(params.slug);
-
-    if (!post) {
-      return notFound();
-    }
-
+    const { slug } = await params;
+    const post = await apiClient.getPost(slug);
     const content = await markdownToHtml(post.content || "");
 
     return (
       <main>
         <Alert preview={post.preview} />
-        
-        {/* Back button with responsive positioning */}
         <div className="fixed top-6 left-4 md:top-28 md:left-16 z-50">
           <BackToBlogButton />
         </div>
-        
         <Container>
           <article className="mb-32">
             <PostHeader
@@ -40,9 +38,8 @@ export default async function Post(props: Params) {
               date={post.date}
               author={post.author}
               content={post.content}
-              viewCounter={<ViewCounter slug={params.slug} />}
+              viewCounter={<ViewCounter slug={slug} />}
             />
-            
             <PostBody content={content} />
           </article>
         </Container>
@@ -50,27 +47,23 @@ export default async function Post(props: Params) {
       </main>
     );
   } catch (error) {
-    console.error('🚀 Server overloaded! Database connection failed:', error);
+    if (error instanceof NotFoundError) {
+      return notFound();
+    }
+    logger.error('Failed to load post', error);
+    if (error instanceof DatabaseError || error instanceof NetworkError) {
+      return <ServerOverloaded />;
+    }
+    // For unknown errors, show error page instead of crashing
     return <ServerOverloaded />;
   }
 }
 
-type Params = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
-export async function generateMetadata(props: Params): Promise<Metadata> {
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   try {
-    const params = await props.params;
-    const post = await getPostBySlug(params.slug);
-
-    if (!post) {
-      return notFound();
-    }
-
-    const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
+    const { slug } = await params;
+    const post = await apiClient.getPost(slug);
+    const title = `${post.title} | ${CMS_NAME}`;
 
     return {
       title,
@@ -80,23 +73,20 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       },
     };
   } catch (error) {
-    console.error('🚀 Server overloaded! Database connection failed:', error);
+    logger.error('Failed to generate metadata', error);
     return {
-      title: 'Server Overloaded | Horizon Hash',
-      description: 'Our servers are working overtime! Please try again later.',
+      title: `Error | ${CMS_NAME}`,
+      description: 'Unable to load post metadata.',
     };
   }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   try {
-    const posts = await getAllPosts();
-
-    return posts.map((post) => ({
-      slug: post.slug,
-    }));
+    const posts = await apiClient.getPosts();
+    return posts.map(post => ({ slug: post.slug }));
   } catch (error) {
-    console.error('🚀 Server overloaded! Database connection failed:', error);
+    logger.error('Failed to generate static params', error);
     return [];
   }
 }

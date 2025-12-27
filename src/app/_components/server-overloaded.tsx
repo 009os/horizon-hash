@@ -1,81 +1,58 @@
 'use client';
 
+import { CMS_NAME } from '@/lib/constants';
+
 export default function ServerOverloaded() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
-      <div className="text-center max-w-2xl mx-auto">
-        {/* Animated Terminal */}
-        <div className="bg-black/80 rounded-lg p-6 mb-8 font-mono text-green-400 border border-green-500/30 shadow-2xl">
-          <div className="flex items-center mb-4">
-            <div className="flex space-x-2">
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            </div>
-            <span className="ml-4 text-gray-400">terminal</span>
-          </div>
-          <div className="space-y-2 text-left">
-            <div className="flex items-center">
-              <span className="text-blue-400">$</span>
-              <span className="ml-2 text-white">npm run dev</span>
-            </div>
-            <div className="text-yellow-400">⚠️  Server overloaded - too many requests</div>
-            <div className="text-red-400">❌ Database connection timeout</div>
-            <div className="text-green-400">🔄 Retrying in 3... 2... 1...</div>
-            <div className="flex items-center">
-              <span className="text-blue-400">$</span>
-              <span className="ml-2 text-white animate-pulse">_</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="space-y-6">
-          <h1 className="text-6xl font-bold text-white mb-4">
-            <span className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-              Server Overloaded
-            </span>
-          </h1>
-          
-          <p className="text-xl text-gray-300 mb-8">
-            Our servers are working overtime! 🚀
-          </p>
-
-          {/* Fun ASCII Art */}
-          <div className="text-green-400 font-mono text-sm mb-8">
-            <pre>{`
-    ╔══════════════════════════════════════╗
-    ║  🔥 SERVER STATUS: OVERLOADED 🔥     ║
-    ║                                      ║
-    ║  💾 Database: [████████░░] 80%       ║
-    ║  🚀 CPU: [██████████░░] 90%         ║
-    ║  💨 Memory: [█████████░░] 85%       ║
-    ║                                      ║
-    ║  Status: Too many awesome requests!  ║
-    ╚══════════════════════════════════════╝
-            `}</pre>
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Professional Maintenance Card */}
+        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl">
+          {/* Logo/Brand */}
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-bold text-white mb-2">{CMS_NAME}</h1>
+            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded"></div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Maintenance Message */}
+          <div className="text-center mb-8">
+            <div className="mb-6">
+              <div className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+            </div>
+            
+            <h2 className="text-3xl font-bold text-white mb-4">
+              We are under maintenance
+            </h2>
+            
+            <p className="text-gray-400 text-lg mb-6">
+              Our team is working hard to fix this!
+            </p>
+          </div>
+
+          {/* Action Button */}
           <div className="space-y-4">
             <button 
               onClick={() => window.location.reload()}
-              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              🔄 Try Again
+              Try Again
             </button>
             
-            <div className="text-gray-400 text-sm">
-              <p>💡 Pro tip: Wait a moment and refresh the page</p>
-              <p>🛠️ Our team is working hard to fix this!</p>
-            </div>
+            <p className="text-center text-gray-500 text-sm">
+              💡 Pro tip: Wait a moment and refresh the page
+            </p>
           </div>
 
-          {/* Fun Loading Animation */}
-          <div className="flex justify-center space-x-2 mt-8">
-            <div className="w-3 h-3 bg-pink-500 rounded-full animate-bounce"></div>
-            <div className="w-3 h-3 bg-purple-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-            <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+          {/* Loading Indicator */}
+          <div className="flex justify-center space-x-2 mt-6">
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
           </div>
         </div>
       </div>

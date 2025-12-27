@@ -1,32 +1,36 @@
-import { NextRequest, NextResponse } from 'next/server'
-import redis from '@/lib/redis'
+/**
+ * View Count API Route
+ * Uses view service for business logic
+ */
+
+import { NextRequest, NextResponse } from 'next/server';
+import { viewService } from '@/services/view.service';
+import { logger } from '@/core/utils/logger';
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = await params
-    const viewCount = await redis.get<number>(`post:${slug}:views`) || 0
-    
-    return NextResponse.json({ viewCount })
+    const { slug } = await params;
+    const viewCount = await viewService.getViewCount(slug);
+    return NextResponse.json({ viewCount });
   } catch (error) {
-    console.error('Error getting view count:', error)
-    return NextResponse.json({ viewCount: 0 })
+    logger.error('Error getting view count', error);
+    return NextResponse.json({ viewCount: 0 });
   }
 }
 
 export async function POST(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = await params
-    const newCount = await redis.incr(`post:${slug}:views`)
-    
-    return NextResponse.json({ viewCount: newCount })
+    const { slug } = await params;
+    const newCount = await viewService.trackView(slug);
+    return NextResponse.json({ viewCount: newCount });
   } catch (error) {
-    console.error('Error incrementing view count:', error)
-    return NextResponse.json({ viewCount: 0 })
+    logger.error('Error incrementing view count', error);
+    return NextResponse.json({ viewCount: 0 });
   }
 }

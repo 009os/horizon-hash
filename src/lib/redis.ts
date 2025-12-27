@@ -1,8 +1,14 @@
-import { Redis } from '@upstash/redis'
+/**
+ * Redis Client Configuration
+ * Uses centralized env config
+ */
+
+import { Redis } from '@upstash/redis';
+import { env } from '@/core/config/env';
 
 const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-})
+  url: env.redisUrl,
+  token: env.redisToken,
+});
 
-export default redis
+export default redis;
