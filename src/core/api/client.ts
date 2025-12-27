@@ -27,6 +27,10 @@ class ApiClient {
     return postService.getPostSlugs();
   }
 
+  async getPostsByCategory(category: string): Promise<Post[]> {
+    return postService.getPostsByCategory(category);
+  }
+
   // View endpoints
   async getViewCount(slug: string): Promise<number> {
     return viewService.getViewCount(slug);

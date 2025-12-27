@@ -25,7 +25,7 @@ export default async function Post({ params }: Params) {
     const content = await markdownToHtml(post.content || "");
 
     return (
-      <main>
+      <main className="bg-white">
         <Alert preview={post.preview} />
         <div className="fixed top-6 left-4 md:top-28 md:left-16 z-50">
           <BackToBlogButton />

@@ -100,9 +100,9 @@ export default function Index() {
                     <span className="branch-content">Market Insights & Quant</span>
                   </Link>
                   
-                  <button className="tree-branch branch-right hover:animate-bounce-gentle hover:scale-110 transition-all duration-300 animate-slide-in-right">
+                  <Link href="/crypto-history" className="tree-branch branch-right hover:animate-bounce-gentle hover:scale-110 transition-all duration-300 animate-slide-in-right">
                     <span className="branch-content">Crypto History</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

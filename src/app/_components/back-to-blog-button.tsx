@@ -2,13 +2,30 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function BackToBlogButton() {
   const [isHovered, setIsHovered] = useState(false)
+  const pathname = usePathname()
+  
+  // Determine back link based on post slug
+  const getBackLink = () => {
+    if (pathname?.includes('/posts/')) {
+      // Extract slug from pathname
+      const slug = pathname.split('/posts/')[1]
+      if (slug?.startsWith('crypto-history-')) {
+        return '/crypto-history'
+      }
+    }
+    return '/blog'
+  }
+  
+  const backLink = getBackLink()
+  const tooltipText = backLink === '/crypto-history' ? 'Back to Crypto History' : 'Back to Blog'
   
   return (
     <Link 
-      href="/blog" 
+      href={backLink} 
       className="group relative inline-flex items-center justify-center"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -62,7 +79,7 @@ export default function BackToBlogButton() {
       
       {/* Tooltip */}
       <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-        Back to Blog
+        {tooltipText}
         <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
       </div>
     </Link>

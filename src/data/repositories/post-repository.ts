@@ -143,6 +143,55 @@ export class PostRepository {
       throw new DatabaseError(`Unexpected error fetching post slugs: ${errorMessage}`, error);
     }
   }
+
+  async findByCategory(category: string, includePreview = false): Promise<DatabasePost[]> {
+    try {
+      let query = supabase
+        .from('posts')
+        .select(`
+          *,
+          author:author_id (
+            name,
+            picture
+          )
+        `)
+        .like('slug', `${category}-%`)
+        .order('date', { ascending: false });
+
+      if (!includePreview) {
+        query = query.eq('preview', false);
+      }
+
+      const { data, error } = await query;
+
+      if (error) {
+        logger.error('Failed to fetch posts by category', error);
+        throw new DatabaseError(`Failed to fetch posts by category: ${error.message}`, error);
+      }
+
+      return (data as DatabasePost[]) || [];
+    } catch (error) {
+      if (error instanceof DatabaseError || error instanceof NetworkError) throw error;
+      
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      const isNetworkError = errorMessage.includes('fetch failed') || 
+                            errorMessage.includes('ECONNREFUSED') ||
+                            errorMessage.includes('ENOTFOUND') ||
+                            errorMessage.includes('network');
+      
+      if (isNetworkError) {
+        logger.error('Network error fetching posts by category - check Supabase connection', error);
+        diagnoseSupabaseConnection();
+        throw new NetworkError(
+          'Unable to connect to database. Please check your internet connection and Supabase configuration.',
+          error
+        );
+      }
+      
+      logger.error('Unexpected error fetching posts by category', error);
+      throw new DatabaseError(`Unexpected error fetching posts by category: ${errorMessage}`, error);
+    }
+  }
 }
 
 export const postRepository = new PostRepository();

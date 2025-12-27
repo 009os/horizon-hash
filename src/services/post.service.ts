@@ -47,6 +47,11 @@ class PostService {
   async getPostSlugs(): Promise<string[]> {
     return postRepository.findAllSlugs();
   }
+
+  async getPostsByCategory(category: string): Promise<Post[]> {
+    const dbPosts = await postRepository.findByCategory(category);
+    return dbPosts.map(post => this.mapDatabasePostToPost(post));
+  }
 }
 
 export const postService = new PostService();

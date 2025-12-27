@@ -1,6 +1,6 @@
 import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
-import { Intro } from "@/app/_components/intro";
+import { CryptoHistoryIntro } from "@/app/_components/crypto-history-intro";
 import { MoreStories } from "@/app/_components/more-stories";
 import { apiClient } from "@/core/api/client";
 import BlogFooter from "@/app/_components/blog-footer";
@@ -11,22 +11,19 @@ import { logger } from "@/core/utils/logger";
 const MAIN_STYLES = "min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative";
 const BACKGROUND_STYLE = { backdropFilter: 'blur(1px)', backgroundAttachment: 'fixed' as const };
 
-export default async function Blog() {
+export default async function CryptoHistory() {
   try {
-    const allPosts = await apiClient.getPosts();
-    
-    // Filter out crypto-history posts (they have their own page)
-    const marketInsightsPosts = allPosts.filter(post => !post.slug.startsWith('crypto-history-'));
+    const allPosts = await apiClient.getPostsByCategory('crypto-history');
 
-    if (marketInsightsPosts.length === 0) {
+    if (allPosts.length === 0) {
       return (
         <main className={MAIN_STYLES} style={BACKGROUND_STYLE}>
           <Container>
-            <Intro />
+            <CryptoHistoryIntro />
             <div className="text-center py-16">
               <h2 className="text-2xl font-bold text-white mb-4">No Articles Found</h2>
               <p className="text-gray-300 mb-8">
-                It looks like there are no articles available yet.
+                It looks like there are no crypto history articles available yet.
               </p>
             </div>
           </Container>
@@ -35,12 +32,12 @@ export default async function Blog() {
       );
     }
 
-    const [heroPost, ...morePosts] = marketInsightsPosts;
+    const [heroPost, ...morePosts] = allPosts;
 
     return (
       <main className={MAIN_STYLES} style={BACKGROUND_STYLE}>
         <Container>
-          <Intro />
+          <CryptoHistoryIntro />
           <HeroPost
             title={heroPost.title}
             coverImage={heroPost.coverImage}
@@ -56,7 +53,7 @@ export default async function Blog() {
       </main>
     );
   } catch (error) {
-    logger.error('Failed to load blog posts', error);
+    logger.error('Failed to load crypto history posts', error);
     
     // Handle all known error types gracefully
     if (error instanceof DatabaseError || error instanceof NetworkError) {
@@ -68,3 +65,4 @@ export default async function Blog() {
     return <ServerOverloaded />;
   }
 }
+

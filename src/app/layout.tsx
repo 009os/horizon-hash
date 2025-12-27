@@ -105,10 +105,10 @@ export default function RootLayout({
         
 
       </head>
-      <body className="font-body body-text">
+      <body className="font-body body-text bg-gradient-to-br from-gray-900 via-black to-gray-800">
         <ThemeSwitcher />
         <ElegantHeader />
-        <div className="min-h-screen pt-16">{children}</div>
+        <div className="min-h-screen pt-16 bg-gradient-to-br from-gray-900 via-black to-gray-800">{children}</div>
       </body>
     </html>
   );
