@@ -51,3 +51,26 @@ CREATE TRIGGER update_authors_updated_at BEFORE UPDATE ON authors
 
 CREATE TRIGGER update_posts_updated_at BEFORE UPDATE ON posts
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- Create users table for authentication
+CREATE TABLE users (
+  userid TEXT PRIMARY KEY,
+  username TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  last_login TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Create indexes for better performance
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_users_username ON users(username);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+
+-- Create policies for users table
+-- Note: Service role key bypasses RLS, but these policies allow API access
+-- Allow service role to perform all operations (service role bypasses RLS anyway)
+CREATE POLICY "Allow service role operations" ON users FOR ALL USING (true) WITH CHECK (true);

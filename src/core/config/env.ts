@@ -33,6 +33,10 @@ class EnvConfig {
   get isDevelopment(): boolean {
     return process.env.NODE_ENV === 'development';
   }
+
+  get jwtSecret(): string {
+    return process.env.JWT_SECRET || this.supabaseAnonKey;
+  }
 }
 
 export const env = new EnvConfig();

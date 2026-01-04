@@ -1,5 +1,6 @@
 import Footer from "@/app/_components/footer";
 import ElegantHeader from "@/app/_components/elegant-header";
+import AuthProviderWrapper from "@/app/_components/auth-provider-wrapper";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import cn from "classnames";
@@ -106,9 +107,11 @@ export default function RootLayout({
 
       </head>
       <body className="font-body body-text bg-gradient-to-br from-gray-900 via-black to-gray-800">
-        <ThemeSwitcher />
-        <ElegantHeader />
-        <div className="min-h-screen pt-16 bg-gradient-to-br from-gray-900 via-black to-gray-800">{children}</div>
+        <AuthProviderWrapper>
+          <ThemeSwitcher />
+          <ElegantHeader />
+          <div className="min-h-screen pt-16 bg-gradient-to-br from-gray-900 via-black to-gray-800">{children}</div>
+        </AuthProviderWrapper>
       </body>
     </html>
   );
