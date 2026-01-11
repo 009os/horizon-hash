@@ -25,7 +25,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const checkSession = async () => {
     try {
-      const response = await fetch('/api/auth/session');
+      // Use AbortController for timeout to prevent hanging
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+      
+      const response = await fetch('/api/auth/session', {
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      
       const data = await response.json();
       
       if (data.authenticated && data.user) {
@@ -33,8 +41,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         setUser(null);
       }
-    } catch (error) {
-      console.error('Session check error:', error);
+    } catch (error: any) {
+      // Don't log timeout errors as they're expected in slow networks
+      if (error.name !== 'AbortError') {
+        console.error('Session check error:', error);
+      }
       setUser(null);
     } finally {
       setLoading(false);

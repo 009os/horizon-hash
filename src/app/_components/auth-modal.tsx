@@ -8,25 +8,25 @@ export default function AuthModal() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="w-full bg-gray-900/90 backdrop-blur-md border border-gray-700 rounded-2xl p-8 shadow-2xl">
+    <div className="w-full bg-black/60 backdrop-blur-sm border border-gray-800/50 rounded-lg p-8 shadow-2xl">
       <div className="text-center mb-6">
-        <h2 className="text-3xl font-bold text-white mb-2">
+        <h2 className="text-3xl font-formal text-white mb-2 tracking-wide">
           {isLogin ? 'Welcome Back' : 'Create Account'}
         </h2>
-        <p className="text-gray-400">
+        <p className="text-gray-400 text-sm font-light tracking-wide uppercase">
           {isLogin ? 'Login to explore blogs' : 'Sign up to get started'}
         </p>
       </div>
 
       <div className="mb-6">
-        <div className="flex bg-gray-800/50 rounded-lg p-1">
+        <div className="flex bg-black/40 border border-gray-800/50 rounded-md p-1">
           <button
             type="button"
             onClick={() => setIsLogin(true)}
-            className={`flex-1 py-2 px-4 rounded-md font-medium transition-all duration-300 ${
+            className={`flex-1 py-3 px-6 rounded-md font-medium text-sm transition-all duration-300 tracking-wide ${
               isLogin
-                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
-                : 'text-gray-400 hover:text-white'
+                ? 'bg-gray-900/80 text-white border border-gray-700/50 shadow-inner'
+                : 'text-gray-500 hover:text-gray-300'
             }`}
           >
             Login
@@ -34,10 +34,10 @@ export default function AuthModal() {
           <button
             type="button"
             onClick={() => setIsLogin(false)}
-            className={`flex-1 py-2 px-4 rounded-md font-medium transition-all duration-300 ${
+            className={`flex-1 py-3 px-6 rounded-md font-medium text-sm transition-all duration-300 tracking-wide ${
               !isLogin
-                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
-                : 'text-gray-400 hover:text-white'
+                ? 'bg-gray-900/80 text-white border border-gray-700/50 shadow-inner'
+                : 'text-gray-500 hover:text-gray-300'
             }`}
           >
             Sign Up
