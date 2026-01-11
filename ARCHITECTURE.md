@@ -3,6 +3,7 @@
 ## 📁 Directory Structure
 
 ```
+
 src/
 ├── core/                    # Core infrastructure
 │   ├── api/                 # API client abstraction
