@@ -3,6 +3,10 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/auth-context';
 
+const inputClass =
+  'w-full px-4 py-2.5 text-slate-100 bg-slate-700/80 border border-slate-600 rounded-lg placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:border-blue-500 transition-all';
+const labelClass = 'block text-sm font-medium text-slate-300 mb-1';
+
 export default function SignupForm() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -15,10 +19,8 @@ export default function SignupForm() {
     e.preventDefault();
     setError('');
     setLoading(true);
-
     try {
       await signup(username, email, password);
-      // Redirect will happen automatically via auth context
     } catch (err: any) {
       setError(err.message || 'Signup failed. Please try again.');
     } finally {
@@ -27,11 +29,11 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label htmlFor="username" className="block text-xs font-medium text-gray-400 mb-2 uppercase tracking-wider">
+            <label htmlFor="username" className={labelClass}>
               Username
             </label>
             <input
@@ -40,13 +42,13 @@ export default function SignupForm() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              className="w-full px-3 py-2.5 text-sm bg-black/40 border border-gray-800/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:border-gray-700 focus:bg-black/60 transition-all duration-200 font-light"
-              placeholder="A unique username"
+              placeholder="Choose a username"
+              className={inputClass}
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-xs font-medium text-gray-400 mb-2 uppercase tracking-wider">
+            <label htmlFor="email" className={labelClass}>
               Email
             </label>
             <input
@@ -55,13 +57,13 @@ export default function SignupForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-3 py-2.5 text-sm bg-black/40 border border-gray-800/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:border-gray-700 focus:bg-black/60 transition-all duration-200 font-light"
-              placeholder="Enter your email"
+              placeholder="you@example.com"
+              className={inputClass}
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-xs font-medium text-gray-400 mb-2 uppercase tracking-wider">
+            <label htmlFor="password" className={labelClass}>
               Password
             </label>
             <input
@@ -71,14 +73,14 @@ export default function SignupForm() {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
-              className="w-full px-3 py-2.5 text-sm bg-black/40 border border-gray-800/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:border-gray-700 focus:bg-black/60 transition-all duration-200 font-light"
-              placeholder="Password (min 6 chars)"
+              placeholder="At least 6 characters"
+              className={inputClass}
             />
           </div>
         </div>
 
         {error && (
-          <div className="p-3 bg-red-950/30 border border-red-900/50 rounded-md text-red-300 text-sm font-light">
+          <div className="p-3 bg-red-900/40 border border-red-700/60 rounded-lg text-red-200 text-sm">
             {error}
           </div>
         )}
@@ -87,13 +89,12 @@ export default function SignupForm() {
           <button
             type="submit"
             disabled={loading}
-            className="px-8 py-3 bg-gray-900/80 hover:bg-gray-900 text-white rounded-md font-medium text-sm tracking-wide border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-gray-900/80 shadow-inner"
+            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold rounded-lg shadow-lg shadow-blue-900/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Creating account...' : 'Sign Up'}
+            {loading ? 'Creating account...' : 'Sign up'}
           </button>
         </div>
       </form>
     </div>
   );
 }
-

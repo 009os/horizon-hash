@@ -38,8 +38,8 @@ const ElegantHeader = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 ${isDarkPage ? 'elegant-header-dark' : 'elegant-header'}`}>
       <div className="w-full px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Left side - Logo */}
-          <div className="flex items-center">
+          {/* Left side - Logo + Cross-blog nav (on /blog and /crypto-history) */}
+          <div className="flex items-center gap-0">
             <Link 
               href="/" 
               className="flex items-center hover:opacity-80 transition-opacity duration-200"
@@ -50,6 +50,34 @@ const ElegantHeader = () => {
                 className="w-16 h-16 object-contain rounded-full shadow-sm"
               />
             </Link>
+            {pathname === "/blog" && (
+              <>
+                <span className="w-px h-6 mx-6 bg-white/30" aria-hidden />
+                <Link
+                  href="/crypto-history"
+                  className="flex items-center gap-2 py-2 px-4 rounded-md border border-white/20 bg-white/5 text-white/90 hover:bg-white/10 hover:text-white hover:border-white/30 transition-all duration-200 text-sm font-medium tracking-wide"
+                >
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  Crypto History Blogs
+                </Link>
+              </>
+            )}
+            {pathname === "/crypto-history" && (
+              <>
+                <span className="w-px h-6 mx-6 bg-white/30" aria-hidden />
+                <Link
+                  href="/blog"
+                  className="flex items-center gap-2 py-2 px-4 rounded-md border border-white/20 bg-white/5 text-white/90 hover:bg-white/10 hover:text-white hover:border-white/30 transition-all duration-200 text-sm font-medium tracking-wide"
+                >
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  Market Insights &amp; Quant Blogs
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Right side - Profile Section - Only show if logged in */}

@@ -25,13 +25,13 @@ export default async function Post({ params }: Params) {
     const content = await markdownToHtml(post.content || "");
 
     return (
-      <main className="bg-white">
+      <main className="journal-page min-h-screen">
         <Alert preview={post.preview} />
         <div className="fixed top-6 left-4 md:top-28 md:left-16 z-50">
           <BackToBlogButton />
         </div>
         <Container>
-          <article className="mb-32">
+          <article className="mb-32 journal-paper py-12 md:py-16 px-6 md:px-12 lg:px-16 rounded-sm">
             <PostHeader
               title={post.title}
               coverImage={post.coverImage}

@@ -21,7 +21,7 @@ export function PostHeader({ title, coverImage, date, author, content, viewCount
       {author && (
         <div className="hidden md:block md:mb-12">
           <div className="flex justify-between items-center">
-            <Avatar name={author.name} picture={author.picture} textColor="black" />
+            <Avatar name={author.name} picture={author.picture} textColor="#3d3630" />
             <div className="flex-shrink-0">
               {viewCounter}
             </div>
@@ -35,17 +35,17 @@ export function PostHeader({ title, coverImage, date, author, content, viewCount
         {author && (
           <div className="block md:hidden mb-6">
             <div className="flex justify-between items-center">
-              <Avatar name={author.name} picture={author.picture} textColor="black" />
+              <Avatar name={author.name} picture={author.picture} textColor="#3d3630" />
               <div className="flex-shrink-0">
                 {viewCounter}
               </div>
             </div>
           </div>
         )}
-        <div className="mb-6 text-lg">
+        <div className="mb-6 text-lg journal-muted">
           <DateFormatter dateString={date} />
           {content && (
-            <div className="mt-2 text-sm text-gray-500">
+            <div className="mt-2 text-sm text-[#5c5248]">
               {formatReadingTime(calculateReadingTime(content))}
             </div>
           )}

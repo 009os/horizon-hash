@@ -10,13 +10,14 @@ export default function HomepageContent() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden" style={{
-        backdropFilter: 'blur(1px)',
-        backgroundAttachment: 'fixed'
-      }}>
+      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden" style={{ backdropFilter: 'blur(1px)', backgroundAttachment: 'fixed' }}>
+        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
         <Container>
-          <section className="relative z-10 flex flex-col items-center justify-center text-center pt-40 min-h-[60vh]">
-            <div className="text-white text-xl">Loading...</div>
+          <section className="relative z-10 flex flex-col items-center justify-center text-center pt-40 min-h-[50vh]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white font-bold text-center leading-tight mb-8">
+              Decoding the Future of Digital Markets
+            </h1>
+            <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" aria-hidden />
           </section>
         </Container>
       </main>
@@ -24,7 +25,6 @@ export default function HomepageContent() {
   }
 
   if (!user) {
-    // Show Login/Signup
     return (
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden" style={{
         backdropFilter: 'blur(1px)',
